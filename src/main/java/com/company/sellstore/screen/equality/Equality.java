@@ -10,12 +10,9 @@ import io.jmix.ui.component.Window;
 import io.jmix.ui.component.mainwindow.Drawer;
 import io.jmix.ui.icon.JmixIcon;
 import io.jmix.ui.model.CollectionLoader;
+import io.jmix.ui.model.InstanceContainer;
 import io.jmix.ui.navigation.Route;
-import io.jmix.ui.screen.Screen;
-import io.jmix.ui.screen.Subscribe;
-import io.jmix.ui.screen.UiController;
-import io.jmix.ui.screen.UiControllerUtils;
-import io.jmix.ui.screen.UiDescriptor;
+import io.jmix.ui.screen.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @UiController("Equality")
@@ -67,4 +64,13 @@ public class Equality extends Screen implements Window.HasWorkArea {
         sellPositionsDl.load();
         
     }
+
+    @Subscribe(id = "detailsDc", target = Target.DATA_CONTAINER)
+    public void onDetailsDcItemChange(InstanceContainer.ItemChangeEvent<Detail> event) {
+
+        sellPositionsDl.setParameter("fullName", event.getItem());
+        sellPositionsDl.load();
+
+    }
+
 }

@@ -16,7 +16,7 @@
             </fetchPlan>
             <loader id="sellPositionsDl">
                 <query>
-                    <![CDATA[select e from SellPosition e]]>
+                    <![CDATA[select e from SellPosition e where e.detail= :fullName]]>
                 </query>
             </loader>
         </collection>
