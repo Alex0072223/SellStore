@@ -35,6 +35,8 @@ public class Detail {
         return sellPosition;
     }
 
+    public Integer returnTrue(){return 1;}
+
     public void setSellPosition(SellPosition sellPosition) {
         this.sellPosition = sellPosition;
     }
