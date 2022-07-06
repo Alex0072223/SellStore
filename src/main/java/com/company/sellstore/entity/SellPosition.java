@@ -1,8 +1,10 @@
 package com.company.sellstore.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import io.jmix.core.metamodel.annotation.JmixProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,6 +36,31 @@ public class SellPosition {
     @Column(name = "COUNT_", nullable = false)
     @NotNull
     private Integer count;
+
+   /* @DependsOnProperties({"retailer", "cost"})
+    @Transient
+    @JmixProperty
+    public String getDett() {
+        StringBuilder sbb = new StringBuilder();
+        if(retailer != null){
+            sbb.append("[").append(cost).append("]");
+        }
+        sbb.append(cost);
+        return sbb.toString();
+    }*/
+
+    @DependsOnProperties({"retailer", "detail"})
+    @Transient
+    @JmixProperty
+    public String getCaption() {
+
+        StringBuilder sb = new StringBuilder();
+        if(detail != null){
+            sb.append("[").append(detail.getName()).append("]");
+        }
+        sb.append(retailer);
+        return sb.toString();
+    }
 
     public void setRetailer(Retailer retailer) {
         this.retailer = retailer;

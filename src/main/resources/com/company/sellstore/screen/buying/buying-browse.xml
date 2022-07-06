@@ -44,7 +44,7 @@
                     dataContainer="buyingsDc">
             <actions>
                 <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
+                <!--<action id="edit" type="edit"/>-->
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
@@ -56,7 +56,7 @@
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createBtn" action="buyingsTable.create"/>
-                <button id="editBtn" action="buyingsTable.edit"/>
+                <!--<button id="editBtn" action="buyingsTable.edit"/>-->
                 <button id="removeBtn" action="buyingsTable.remove"/>
             </buttonsPanel>
         </groupTable>

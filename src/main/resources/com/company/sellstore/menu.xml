@@ -9,6 +9,7 @@
         <item screen="SellPosition.browse"
               caption="msg://com.company.sellstore.screen.sellposition/sellPositionBrowse.menu"/>
         <item screen="Buying.browse" caption="msg://com.company.sellstore.screen.buying/buyingBrowse.menu"/>
+        <item screen="Equality" caption=""/>
     </menu>
 
 </menu-config>
