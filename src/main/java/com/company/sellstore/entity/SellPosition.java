@@ -53,7 +53,7 @@ public class SellPosition {
         return sbb.toString();
     }*/
 
-    @DependsOnProperties({"retailer", "detail"})
+    /*@DependsOnProperties({"retailer", "detail"})
     @JmixProperty
     public String getCaption() {
 
@@ -63,7 +63,7 @@ public class SellPosition {
         }
         sb.append(retailer);
         return sb.toString();
-    }
+    }*/
 
     public void setRetailer(Retailer retailer) {
         this.retailer = retailer;

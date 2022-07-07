@@ -15,7 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.beans.IntrospectionException;
 import java.util.List;
+import java.util.Objects;
 
 @UiController("Buying.edit")
 @UiDescriptor("buying-edit.xml")
@@ -29,6 +31,7 @@ public class BuyingEdit extends StandardEditor<Buying> {
     private BuyingService buyingService;
     @Autowired
     private Dialogs dialogs;
+    int j, k;
 
 
 
@@ -43,25 +46,37 @@ public class BuyingEdit extends StandardEditor<Buying> {
 
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
-      /*  dataManager.loadValue("select e from Buying e where e.sellPosition.count=" + getEditedEntity().getCount()); */
 
-        if (getEditedEntity().getCount() <= 1) {
+
+        if (k > j) {
             dialogs.createOptionDialog()
-                    .withCaption("Confirmation")
-                    .withMessage("Number is 1. Do you want to commit?")
+                    .withCaption("Error!")
+                    .withMessage("Нельзя купить больше деталей чем имеется!")
                     .withActions(
-                            new DialogAction(DialogAction.Type.OK).withHandler(e -> {
+                            /*new DialogAction(DialogAction.Type.OK).withHandler(e -> {
                                 event.resume();
-                            }),
-                            new DialogAction(DialogAction.Type.CANCEL)
+                            }),*/
+                            new DialogAction(DialogAction.Type.OK)
                     )
                     .show();
             event.preventCommit();
         }
+        else {
+            log.info("sssiy");}
     }
 
     @Subscribe("countField")
     public void onCountFieldValueChange(HasValue.ValueChangeEvent<Integer> event) {
+
+
+      k =  event.getValue();
+
+        /*buyingService.getCountFrom(event.getValue());
+        System.out.println( buyingService.getCountFrom(event.getValue()));
+        System.out.println("asdasdasdsa"+j);
+        System.out.println("asdasdasdsa"+k);*/
+
+
 
 
        /*buyingService.loadByFullQuery(event.getValue());
@@ -102,7 +117,15 @@ public class BuyingEdit extends StandardEditor<Buying> {
 
     @Subscribe("sellPositionField")
     public void onSellPositionFieldValueChange(HasValue.ValueChangeEvent<SellPosition> event) {
-       log.info(String.valueOf(event.getValue()));
+
+       j = buyingService.getCountFrom(event.getValue().getCount());
+
+
+        //System.out.println( buyingService.getCountFrom(event.getValue().getCount()));
+
+
+      //  buyingService.count(event.getValue());
+       //log.info(String.valueOf(event.getValue()));
 
     }
 }

@@ -34,20 +34,20 @@ public class Buying {
     @NotNull
     private LocalDate dateOfBuying;
 
-    public LocalDate getDateOfBuying() {
-        return dateOfBuying;
-    }
-
-    public void setDateOfBuying(LocalDate dateOfBuying) {
-        this.dateOfBuying = dateOfBuying;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Integer getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public LocalDate getDateOfBuying() {
+        return dateOfBuying;
+    }
+
+    public void setDateOfBuying(LocalDate dateOfBuying) {
+        this.dateOfBuying = dateOfBuying;
     }
 
     public SellPosition getSellPosition() {
