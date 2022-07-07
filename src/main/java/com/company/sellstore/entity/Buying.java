@@ -5,6 +5,7 @@ import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -24,6 +25,7 @@ public class Buying {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private SellPosition sellPosition;
 
+    @Positive
     @Column(name = "COUNT_", nullable = false)
     @NotNull
     private Integer count;

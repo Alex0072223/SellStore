@@ -8,6 +8,8 @@ import io.jmix.core.metamodel.annotation.JmixProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.UUID;
 
 @JmixEntity
@@ -29,10 +31,12 @@ public class SellPosition {
     @ManyToOne(fetch = FetchType.LAZY)
     private Detail detail;
 
+    @Positive(message = "{msg://com.company.sellstore.entity/SellPosition.cost.validation.Positive}")
     @Column(name = "COST", nullable = false)
     @NotNull
     private Integer cost;
 
+    @PositiveOrZero
     @Column(name = "COUNT_", nullable = false)
     @NotNull
     private Integer count;
@@ -50,7 +54,6 @@ public class SellPosition {
     }*/
 
     @DependsOnProperties({"retailer", "detail"})
-    @Transient
     @JmixProperty
     public String getCaption() {
 
