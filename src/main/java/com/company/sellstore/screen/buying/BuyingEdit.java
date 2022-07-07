@@ -31,7 +31,7 @@ public class BuyingEdit extends StandardEditor<Buying> {
     private BuyingService buyingService;
     @Autowired
     private Dialogs dialogs;
-    int j, k;
+    int countOfDetailsFromRetailer, countOfDetailsFromCustomer;
 
 
 
@@ -48,7 +48,7 @@ public class BuyingEdit extends StandardEditor<Buying> {
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
 
 
-        if (k > j) {
+        if (countOfDetailsFromCustomer > countOfDetailsFromRetailer) {
             dialogs.createOptionDialog()
                     .withCaption("Error!")
                     .withMessage("Нельзя купить больше деталей чем имеется!")
@@ -69,7 +69,7 @@ public class BuyingEdit extends StandardEditor<Buying> {
     public void onCountFieldValueChange(HasValue.ValueChangeEvent<Integer> event) {
 
 
-      k =  event.getValue();
+        countOfDetailsFromCustomer =  event.getValue();
 
         /*buyingService.getCountFrom(event.getValue());
         System.out.println( buyingService.getCountFrom(event.getValue()));
@@ -118,7 +118,7 @@ public class BuyingEdit extends StandardEditor<Buying> {
     @Subscribe("sellPositionField")
     public void onSellPositionFieldValueChange(HasValue.ValueChangeEvent<SellPosition> event) {
 
-       j = buyingService.getCountFrom(event.getValue().getCount());
+        countOfDetailsFromRetailer = buyingService.getCountFrom(event.getValue().getCount());
 
 
         //System.out.println( buyingService.getCountFrom(event.getValue().getCount()));
