@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.beans.IntrospectionException;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @UiController("Buying.edit")
 @UiDescriptor("buying-edit.xml")
@@ -32,6 +33,9 @@ public class BuyingEdit extends StandardEditor<Buying> {
     @Autowired
     private Dialogs dialogs;
     int countOfDetailsFromRetailer, countOfDetailsFromCustomer;
+    UUID f;
+
+
 
 
 
@@ -62,7 +66,9 @@ public class BuyingEdit extends StandardEditor<Buying> {
             event.preventCommit();
         }
         else {
-            log.info("sssiy");}
+            buyingService.updateAfterBuy(countOfDetailsFromCustomer, f);
+            log.info("sssiy");
+        }
     }
 
     @Subscribe("countField")
@@ -117,6 +123,17 @@ public class BuyingEdit extends StandardEditor<Buying> {
 
     @Subscribe("sellPositionField")
     public void onSellPositionFieldValueChange(HasValue.ValueChangeEvent<SellPosition> event) {
+       // buyingService.getCountFrom(event.getValue().getRetailer().getId());
+        f = Objects.requireNonNull(event.getValue()).getId();
+        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPP");
+
+        System.out.println(f);
+        System.out.println(event.getValue().getId());
+        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPP");
+
+        log.info(String.valueOf(f));
+        log.info(String.valueOf(event.getValue().getId()));
+        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPP");
 
         countOfDetailsFromRetailer = buyingService.getCountFrom(event.getValue().getCount());
 
