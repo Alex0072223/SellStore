@@ -1,6 +1,7 @@
 package com.company.sellstore.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.*;
@@ -20,9 +21,9 @@ public class Buying {
     @Id
     private UUID id;
 
-    @JoinColumn(name = "SELL_POSITION_ID", nullable = false)
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @InstanceName
+    @JoinColumn(name = "SELL_POSITION_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     private SellPosition sellPosition;
 
     @Positive

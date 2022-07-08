@@ -11,7 +11,10 @@ import javax.validation.constraints.PositiveOrZero;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "SELL_POSITION")
+@Table(name = "SELL_POSITION", indexes = {
+        @Index(name = "IDX_SELLPOSITION_RETAILER_ID", columnList = "RETAILER_ID"),
+        @Index(name = "IDX_SELLPOSITION_DETAIL_ID", columnList = "DETAIL_ID"),
+})
 @Entity
 public class SellPosition {
     @JmixGeneratedValue
@@ -20,9 +23,8 @@ public class SellPosition {
     private UUID id;
 
     @InstanceName
-    @JoinColumn(name = "RETAILER_ID", nullable = false)
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "RETAILER_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Retailer retailer;
 
     @JoinColumn(name = "DETAIL_ID")
@@ -38,6 +40,22 @@ public class SellPosition {
     @Column(name = "COUNT_", nullable = false)
     @NotNull
     private Integer count;
+
+    public Detail getDetail() {
+        return detail;
+    }
+
+    public void setDetail(Detail detail) {
+        this.detail = detail;
+    }
+
+    public Retailer getRetailer() {
+        return retailer;
+    }
+
+    public void setRetailer(Retailer retailer) {
+        this.retailer = retailer;
+    }
 
    /* @DependsOnProperties({"retailer", "cost"})
     @Transient
@@ -62,22 +80,6 @@ public class SellPosition {
         sb.append(retailer);
         return sb.toString();
     }*/
-
-    public void setRetailer(Retailer retailer) {
-        this.retailer = retailer;
-    }
-
-    public Retailer getRetailer() {
-        return retailer;
-    }
-
-    public void setDetail(Detail detail) {
-        this.detail = detail;
-    }
-
-    public Detail getDetail() {
-        return detail;
-    }
 
     public Integer getCount() {
         return count;

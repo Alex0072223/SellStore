@@ -27,6 +27,7 @@ public class Detail {
     @Column(name = "ARTICLE", nullable = false)
     @NotNull
     private String article;
+
     @JoinColumn(name = "SELL_POSITION_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private SellPosition sellPosition;

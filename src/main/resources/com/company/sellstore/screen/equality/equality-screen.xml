@@ -31,7 +31,7 @@
         <cssLayout id="horizontalWrap"
                    stylename="jmix-drawer-layout">
             <drawer id="drawer" expandOnHover="true">
-                <cssLayout id="appTitleBox"
+                <!--<cssLayout id="appTitleBox"
                            stylename="jmix-drawer-header"
                            width="100%">
                     <image id="logoImage"
@@ -47,9 +47,9 @@
                 </cssLayout>
                 <sideMenu id="sideMenu"
                           width="100%"
-                          stylename="jmix-drawer-content"/>
-                <timeZoneIndicator id="timeZoneIndicator"
-                                   align="MIDDLE_CENTER"/>
+                          stylename="jmix-drawer-content"/>-->
+                <!--<timeZoneIndicator id="timeZoneIndicator"
+                                   align="MIDDLE_CENTER"/>-->
                 <cssLayout id="controlBox"
                            stylename="jmix-drawer-footer"
                            width="100%">
@@ -91,8 +91,8 @@
                             <action id="view" type="view"/>
                         </actions>
                         <buttonsPanel alwaysVisible="true">
-                            <button id="equalTableRefreshBtn" action="equalTable.refresh"
-                                    caption="msg://equalTableRefreshBtn.caption"/>
+                            <!--<button id="equalTableRefreshBtn" action="equalTable.refresh"
+                                    caption="msg://equalTableRefreshBtn.caption"/>-->
                             <button id="equalTableShowEntityInfoBtn" action="equalTable.showEntityInfo"/>
                             <button id="equalTableViewBtn" action="equalTable.view"/>
                         </buttonsPanel>
