@@ -27,25 +27,12 @@ public class BuyingEdit extends StandardEditor<Buying> {
     private static final Logger log = LoggerFactory.getLogger(BuyingEdit.class);
 
     @Autowired
-    private DataManager dataManager;
-    @Autowired
     private BuyingService buyingService;
     @Autowired
     private Dialogs dialogs;
     int countOfDetailsFromRetailer, countOfDetailsFromCustomer;
     UUID f;
 
-
-
-
-
-
-    @Subscribe(id = "buyingDc", target = Target.DATA_CONTAINER)
-    public void onBuyingDcItemChange(InstanceContainer.ItemChangeEvent<Buying> event) {
-
-        //sellPositionsDl.load();
-
-    }
 
 
     @Subscribe
@@ -67,82 +54,20 @@ public class BuyingEdit extends StandardEditor<Buying> {
         }
         else {
             buyingService.updateAfterBuy(countOfDetailsFromCustomer, f);
-            log.info("sssiy");
         }
     }
 
     @Subscribe("countField")
     public void onCountFieldValueChange(HasValue.ValueChangeEvent<Integer> event) {
-
-
         countOfDetailsFromCustomer =  event.getValue();
-
-        /*buyingService.getCountFrom(event.getValue());
-        System.out.println( buyingService.getCountFrom(event.getValue()));
-        System.out.println("asdasdasdsa"+j);
-        System.out.println("asdasdasdsa"+k);*/
-
-
-
-
-       /*buyingService.loadByFullQuery(event.getValue());
-        System.out.println(buyingService.loadByFullQuery(event.getValue()).get(event.getValue()));
-        log.info(String.valueOf(buyingService.loadByFullQuery(event.getValue()).get(event.getValue())));
-        System.out.println(buyingService.loadByFullQuery(event.getValue()).get(event.getValue()));
-        log.info("qqqqqqqqqqqqqqqqqqqq");
-        log.info("qqqqqqqqqqqqqqqqqqqq");*/
-
-       // buyingService.count(event.getValue());
-
-        /*log.info(String.valueOf(dataManager.loadValues("select e from SellPosition e where e.count=" + event.getValue())));
-        log.info("qqqqqqqqqqqqqqqqqqqq");
-
-        log.info("qqqqqqqqqqqqqqqqqqqq");*/
-
-        //FluentValuesLoader q = dataManager.loadValues("select e from Buying e where e.sellPosition.count=" + event.getValue());
-       /* int foo = Integer.parseInt(String.valueOf(q));
-
-        if(event.getValue() < foo){
-            log.info("qqqqqqqqqqqqqqqqqqqq");
-            log.info("qqqqqqqqqqqqqqqqqqqq");
-            log.info("qqqqqqqqqqqqqqqqqqqq");
-            log.info("qqqqqqqqqqqqqqqqqqqq");
-            log.info("qqqqqqqqqqqqqqqqqqqq");
-            System.out.println("qqqqqqqqqqqqqqqqqqqq");
-            System.out.println("qqqqqqqqqqqqqqqqqqqq");
-            System.out.println("qqqqqqqqqqqqqqqqqqqq");
-            System.out.println("qqqqqqqqqqqqqqqqqqqq");
-
-        }*/
-
-
-
-
-
     }
 
     @Subscribe("sellPositionField")
     public void onSellPositionFieldValueChange(HasValue.ValueChangeEvent<SellPosition> event) {
-       // buyingService.getCountFrom(event.getValue().getRetailer().getId());
+
         f = Objects.requireNonNull(event.getValue()).getId();
-        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPP");
-
-        System.out.println(f);
-        System.out.println(event.getValue().getId());
-        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPP");
-
-        log.info(String.valueOf(f));
-        log.info(String.valueOf(event.getValue().getId()));
-        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPP");
 
         countOfDetailsFromRetailer = buyingService.getCountFrom(event.getValue().getCount());
-
-
-        //System.out.println( buyingService.getCountFrom(event.getValue().getCount()));
-
-
-      //  buyingService.count(event.getValue());
-       //log.info(String.valueOf(event.getValue()));
 
     }
 }
