@@ -1,7 +1,8 @@
 # SellStore
 Haulmont Jmix Project
 
-For connect Data Base (PGs)
+
+For conect Data Base (PGs)
  to application.properties
  
   main.datasource.url = jdbc:postgresql://localhost:5432/*name of database*
