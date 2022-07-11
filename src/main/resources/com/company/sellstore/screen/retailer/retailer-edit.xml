@@ -38,7 +38,8 @@
                     </actions>
                 </entityPicker>
                 <textField id="adressField" property="adress"/>
-                <textField id="phoneField" property="phone"/>
+                <!--<textField id="phoneField" property="phone"/>-->
+                <maskedField id="phoneField" property="phone" mask="# (###) ###-##-##"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

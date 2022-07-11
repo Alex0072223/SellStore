@@ -1,6 +1,7 @@
 # SellStore
 Haulmont Jmix Project
 
+
 For conect Data Base (PGs)
  to application.properties
  
